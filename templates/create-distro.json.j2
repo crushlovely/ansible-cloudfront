@@ -1,0 +1,68 @@
+{
+  "CallerReference": "{{ item.caller_reference|mandatory }}",
+  "Aliases": {
+    "Quantity": 0,
+    "Items": []
+  },
+  "DefaultRootObject": "",
+  "PriceClass": "PriceClass_All",
+  "Enabled": false,
+  "Origins": {
+    "Quantity": 1,
+    "Items": [
+      {
+        "S3OriginConfig": {
+          "OriginAccessIdentity": ""
+          },
+        "Id": "S3-{{ item.bucket_name }}",
+        "DomainName": "{{ item.bucket_name }}.s3.amazonaws.com"
+      }
+    ]
+  },
+  "DefaultCacheBehavior": {
+    "TargetOriginId": "S3-{{ item.bucket_name }}",
+    "ForwardedValues": {
+      "QueryString": false,
+      "Cookies": {
+        "Forward": "none",
+        "WhitelistedNames": {
+          "Quantity": 0,
+          "Items": []
+        }
+      },
+      "Headers": {
+        "Quantity": 1,
+        "Items": ["Origin"]
+      }
+    },
+    "TrustedSigners": {
+      "Enabled": false,
+      "Quantity": 0,
+      "Items": []
+    },
+    "ViewerProtocolPolicy": "allow-all",
+    "MinTTL": 0,
+    "AllowedMethods": {
+      "Quantity": 2,
+      "Items": ["GET","HEAD"],
+      "CachedMethods": {
+        "Quantity": 2,
+        "Items": ["GET","HEAD"]
+      }
+    }
+  },
+  "ViewerCertificate": {
+      "CloudFrontDefaultCertificate": true
+  },
+  "CustomErrorResponses": {
+      "Quantity": 0
+  },
+  "Restrictions": {
+      "GeoRestriction": {
+          "RestrictionType": "none",
+          "Quantity": 0
+      }
+  },
+  "Comment": "Created with Ansible",
+  "Enabled": true
+}

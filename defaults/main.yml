@@ -1,0 +1,10 @@
+---
+app_name: test
+server_env: qa
+access_key: ""
+secret_key: ""
+asset_vars:
+  - bucket_name: "{{ app_name }}-{{ server_env }}"
+    caller_reference: 1
+  - bucket_name: "{{ app_name }}-assets-{{ server_env }}"
+    caller_reference: 2
