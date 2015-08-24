@@ -1,9 +1,9 @@
 ---
 app_name: test
 server_env: qa
-access_key: ""
-secret_key: ""
-asset_vars:
+aws_access_key: ""
+aws_secret_key: ""
+aws_s3:
   - bucket_name: "{{ app_name }}-{{ server_env }}"
     caller_reference: 1
   - bucket_name: "{{ app_name }}-assets-{{ server_env }}"
