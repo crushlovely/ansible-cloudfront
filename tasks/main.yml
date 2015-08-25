@@ -11,16 +11,15 @@
 - name: create distro config and place in tmp directory
   template: src=create-distro.json.j2 dest=/tmp/{{ item.bucket_name }}.json
   with_items:
-    - "{{ asset_vars }}"
+    - "{{ aws_s3 }}"
 
 - name: create Cloudfront distributions
   command: "aws cloudfront create-distribution --distribution-config=file:///tmp/{{ item.bucket_name }}.json --profile {{ app_name }}"
   with_items:
-    - "{{ asset_vars }}"
+    - "{{ aws_s3 }}"
 
 - name: List Cloudfront distrinutions
   shell: "aws cloudfront list-distributions --profile {{ app_name }} | grep DomainName"
   register: cloudfront_results
 
 - debug: var=cloudfront_results
-
