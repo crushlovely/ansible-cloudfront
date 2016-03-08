@@ -5,11 +5,13 @@ galaxy_info:
   description: Provision and Configure AWS cloudfront distributions
   license: MIT
   min_ansible_version: 1.9
+  platforms:
   - name: Ubuntu
     versions:
     - precise
     - trusty
   - name: OSX
+    versions:
     - el capitan
     - mavericks
   categories:
